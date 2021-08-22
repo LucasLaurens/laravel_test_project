@@ -16,9 +16,10 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
-
-Route::get('/foo', '\App\Http\Controllers\TestController@foo');
-Route::get('/bar', '\App\Http\Controllers\TestController@bar');
+Route::middleware(['auth', 'is.admin'])->group(function() {
+    Route::get('/foo', '\App\Http\Controllers\TestController@foo');
+    Route::get('/bar', '\App\Http\Controllers\TestController@bar');
+});
 
 Route::get('/dashboard', function () {
     return view('dashboard');
