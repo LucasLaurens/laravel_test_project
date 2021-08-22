@@ -7,6 +7,11 @@ use Illuminate\Support\Facades\Gate;
 
 class TestController extends Controller
 {
+    public function __construct()
+    {
+        // $this->middleware('auth')->except('bar');
+    }
+
     public function foo() {
         // Define in the AuthServiceProvider file
         if (! Gate::allows('access-admin')) {
