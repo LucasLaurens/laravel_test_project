@@ -19,6 +19,7 @@ Route::get('/', function () {
 Route::middleware(['auth', 'is.admin'])->group(function() {
     Route::get('/foo', '\App\Http\Controllers\TestController@foo');
     Route::get('/bar', '\App\Http\Controllers\TestController@bar');
+    Route::get('/create', '\App\Http\Controllers\TestController@create')->withoutMiddleware(['auth', 'is.admin']);
 });
 
 Route::get('/dashboard', function () {
