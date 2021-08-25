@@ -1,0 +1,45 @@
+// @import 'tailwindcss/base';
+// @import 'tailwindcss/components';
+// @import 'tailwindcss/utilities';
+
+// body {
+//     background: #444;
+// }
+
+
+
+.card {
+    &-category {
+        &-title {
+            margin-top: 15px;
+        }
+    }
+}
+
+.cards {
+    display: grid;
+    grid-template-areas: 'a a a';
+
+    .card {
+        &-post {
+            padding: 1em;
+            display: flex;
+            flex-flow: column;
+            align-items: center;
+            justify-content: center;
+
+            &-title {
+
+            }
+
+            &-description {
+                margin-top: 15px;
+                text-align: center;
+            }
+
+            &-time {
+                margin-top: 15px;
+            }
+        }
+    }
+}
