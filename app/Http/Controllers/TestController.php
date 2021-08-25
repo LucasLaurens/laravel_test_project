@@ -5,16 +5,29 @@ namespace App\Http\Controllers;
 use App\Events\PostCreatedEvent;
 use App\Mail\TestMail;
 use App\Mail\TestMarkdownMail;
+use App\Models\Category;
 use App\Models\Post;
+use App\Repository\CategoryRepositoryInterface;
+use Database\Factories\CategoryFactory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Mail;
 
 class TestController extends Controller
 {
-    public function __construct()
+    private $categoryRepository;
+    
+    public function __construct(CategoryRepositoryInterface $categoryRepository)
     {
+        $this->categoryRepository = $categoryRepository;
         // $this->middleware('auth')->except('bar');
+    }
+
+    public function index() {
+        // Category::with('posts')->get()
+        return view('test.index', [
+            "categories" => $this->categoryRepository->all()
+        ]);
     }
 
     public function foo() {
@@ -34,12 +47,12 @@ class TestController extends Controller
         return view('test.bar');
     }
 
-    public function create() {
-        $post = Post::create([
-            "title"       => "test 1",
-            "description" => "test 1"
-        ]);
+    // public function create() {
+    //     $post = Post::create([
+    //         "title"       => "test 1",
+    //         "description" => "test 1"
+    //     ]);
 
-        event(new PostCreatedEvent($post));
-    }
+    //     event(new PostCreatedEvent($post));
+    // }
 }
