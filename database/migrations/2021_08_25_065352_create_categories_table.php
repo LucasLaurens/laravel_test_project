@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreatePostTable extends Migration
+class CreateCategoriesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,23 @@ class CreatePostTable extends Migration
      */
     public function up()
     {
-        Schema::create('posts', function (Blueprint $table) {
+        Schema::create('categories', function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->id();
             $table->string('title');
-            $table->text('description');
             $table->timestamps();
         });
+
+        if ( Schema::hasTable('categories') ) {            
+            Schema::table('posts', function (Blueprint $table) {
+                $table->foreignId('category_id')->references('id')->on('categories')
+                ->onUpdate('cascade')->onDelete('cascade');
+            });
+        }
+        
     }
+
+        
 
     /**
      * Reverse the migrations.
@@ -29,11 +38,6 @@ class CreatePostTable extends Migration
      */
     public function down()
     {
-        Schema::table('posts', function (Blueprint $table) {
-            $table->dropForeign(['category_id']);
-            $table->dropColumn(['category_id']);
-        });
-
-        Schema::dropIfExists('posts');
+        Schema::dropIfExists('categories');
     }
 }
