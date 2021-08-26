@@ -21,6 +21,7 @@ Route::middleware(['auth', 'is.admin'])->group(function() {
     Route::get('/bar', '\App\Http\Controllers\TestController@bar');
     Route::get('/home', '\App\Http\Controllers\TestController@index')->withoutMiddleware(['auth', 'is.admin'])->name('home');
     Route::delete('/home/{id}', '\App\Http\Controllers\TestController@delete')->withoutMiddleware(['auth', 'is.admin'])->name('post.delete');
+    Route::get('/posts', '\App\Http\Controllers\TestController@posts')->withoutMiddleware(['auth', 'is.admin'])->name('posts');
     // Route::get('/create', '\App\Http\Controllers\TestController@create')->withoutMiddleware(['auth', 'is.admin']);
 });
 

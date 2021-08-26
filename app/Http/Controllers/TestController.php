@@ -57,6 +57,12 @@ class TestController extends Controller
         return redirect()->route('home');
     }
 
+    public function posts() {
+        return view('test.posts', [
+            "posts" => Post::paginate(3)
+        ]);
+    }
+
     // public function create() {
     //     $post = Post::create([
     //         "title"       => "test 1",
