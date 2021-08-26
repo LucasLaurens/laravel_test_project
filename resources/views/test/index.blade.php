@@ -7,6 +7,8 @@
     
     <div>
         <h3>Home</h3>
+        <x-alert/>
+        <x-test />
 
         @foreach ($categories as $category)
             <div class="card-category">
@@ -18,7 +20,16 @@
             @foreach ($categories as $category)
                 @foreach ($category->posts as $post)
                 <div class="card-post">
-                        <div class="card-post-title"><strong>{{ $post->title }}</strong></div>
+                        <div class="card-post-title">
+                            <x-newFirstComponent 
+                                name="everyone" 
+                                :title="$post->title" 
+                                class="text-grey"
+                            >
+                                {{-- <div>Hello everyone 2</div> --}}
+                                <x-slot name="subtitle">My biggest subtitle</x-slot>
+                            </x-newFirstComponent>
+                        </div>
                         @if(isset($post->deleted_at))
                             <div><strong style="color: #FF5555;">Has been deleted</strong></div>
                         @endif
