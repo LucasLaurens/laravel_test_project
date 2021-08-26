@@ -19,7 +19,8 @@ Route::get('/', function () {
 Route::middleware(['auth', 'is.admin'])->group(function() {
     Route::get('/foo', '\App\Http\Controllers\TestController@foo');
     Route::get('/bar', '\App\Http\Controllers\TestController@bar');
-    Route::get('/home', '\App\Http\Controllers\TestController@index')->withoutMiddleware(['auth', 'is.admin']);
+    Route::get('/home', '\App\Http\Controllers\TestController@index')->withoutMiddleware(['auth', 'is.admin'])->name('home');
+    Route::delete('/home/{id}', '\App\Http\Controllers\TestController@delete')->withoutMiddleware(['auth', 'is.admin'])->name('post.delete');
     // Route::get('/create', '\App\Http\Controllers\TestController@create')->withoutMiddleware(['auth', 'is.admin']);
 });
 

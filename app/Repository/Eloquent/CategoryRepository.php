@@ -24,6 +24,6 @@ class CategoryRepository extends BaseRepository implements CategoryRepositoryInt
     */
    public function all(): Collection
    {
-       return $this->model->with('posts')->get();    
+       return $this->model->withTrashed()->with('posts')->get();    
    }
 }

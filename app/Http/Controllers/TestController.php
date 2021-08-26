@@ -47,6 +47,16 @@ class TestController extends Controller
         return view('test.bar');
     }
 
+    public function delete($id) {
+        $post = Post::findOrFail($id);
+        $post->delete();
+
+        // restore()
+        // forceDelete()
+
+        return redirect()->route('home');
+    }
+
     // public function create() {
     //     $post = Post::create([
     //         "title"       => "test 1",
