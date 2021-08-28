@@ -5,9 +5,9 @@
 - Middleware
 - Gate
 - Email
-- Event / Listener
+- Event | Listener
 - Observer
-- Factory / Seeder
+- Factory | Seeder
 - Repository Pattern
 - Job
 - Cron Command
@@ -15,3 +15,4 @@
 - Blade Component
 - Pagination
 - Sass
+- Local Scopes | Global Scopes
