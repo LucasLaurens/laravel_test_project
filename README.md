@@ -17,3 +17,4 @@
 - Sass
 - Local Scopes | Global Scopes
 - Notifications -> Mail | Database
+- Tailwindcss | Bootstrap
