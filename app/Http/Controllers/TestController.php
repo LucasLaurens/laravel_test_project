@@ -9,6 +9,7 @@ use App\Models\Category;
 use App\Models\Post;
 use App\Repository\CategoryRepositoryInterface;
 use App\Repository\PostRepositoryInterface;
+use App\Scopes\VisibleScope;
 use Database\Factories\CategoryFactory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
@@ -72,6 +73,12 @@ class TestController extends Controller
     public function show($id) {
         dd(
             $this->postRepository->show($id)
+        );
+    }
+
+    public function is_visible() {
+        dd(
+            Post::withoutGlobalScope(VisibleScope::class)->category()->get()
         );
     }
 
