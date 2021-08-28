@@ -5,7 +5,9 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Jobs\SendWelcomeUserMailJob;
 use App\Mail\WelcomeUserMail;
+use App\Models\Post;
 use App\Models\User;
+use App\Notifications\UserRegisteredNotification;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
@@ -51,7 +53,9 @@ class RegisteredUserController extends Controller
         event(new Registered($user));
 
         //* php artisan queue:work
-        SendWelcomeUserMailJob::dispatch($user);
+        // SendWelcomeUserMailJob::dispatch($user);
+        
+        $user->notify(new UserRegisteredNotification());
 
         Auth::login($user);
 
