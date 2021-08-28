@@ -22,7 +22,7 @@ $grey: #ccc;
             justify-content: center;
 
             &-title {
-
+                text-align: center;
             }
 
             &-description {
@@ -39,6 +39,7 @@ $grey: #ccc;
 
 .text-grey{
     color: $grey;
+    text-align: center;
 }
 .font-bold {
     font-weight: bold;

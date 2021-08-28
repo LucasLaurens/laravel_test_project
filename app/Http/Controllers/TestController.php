@@ -64,23 +64,23 @@ class TestController extends Controller
         return redirect()->route('home');
     }
 
-    public function posts() {
-        return view('test.posts', [
-            "posts" => Post::paginate(3)
-        ]);
-    }
+    // public function posts() {
+    //     return view('test.posts', [
+    //         "posts" => Post::paginate(3)
+    //     ]);
+    // }
 
-    public function show($id) {
-        dd(
-            $this->postRepository->show($id)
-        );
-    }
+    // public function show($id) {
+    //     dd(
+    //         $this->postRepository->show($id)
+    //     );
+    // }
 
-    public function is_visible() {
-        dd(
-            Post::withoutGlobalScope(VisibleScope::class)->category()->get()
-        );
-    }
+    // public function is_visible() {
+    //     dd(
+    //         Post::withoutGlobalScope(VisibleScope::class)->category()->get()
+    //     );
+    // }
 
     // public function create() {
     //     $post = Post::create([

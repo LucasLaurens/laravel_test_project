@@ -17,13 +17,13 @@ class Post extends Model
         'is_visible'
     ];
 
-    public function postFormat()
-    {
-        return [
-            'post_name'        => $this->title,
-            'post_description' => $this->description
-        ];
-    }
+    // public function postFormat()
+    // {
+    //     return [
+    //         'post_name'        => $this->title,
+    //         'post_description' => $this->description
+    //     ];
+    // }
 
     /**
      * Local Scopes
@@ -34,10 +34,10 @@ class Post extends Model
     //     return $query->where('is_visible', 1);
     // }
 
-    public function scopeCategory($query) 
-    {
-        return $query->where('category_id', 2);
-    }
+    // public function scopeCategory($query) 
+    // {
+    //     return $query->where('category_id', 2);
+    // }
     
     // public function scopeTitle($query) 
     // {
@@ -56,8 +56,8 @@ class Post extends Model
      *
      * @return void
      */
-    protected static function booted()
-    {
-        static::addGlobalScope(new VisibleScope);
-    }
+    // protected static function booted()
+    // {
+    //     static::addGlobalScope(new VisibleScope);
+    // }
 }
