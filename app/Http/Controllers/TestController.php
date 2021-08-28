@@ -8,6 +8,7 @@ use App\Mail\TestMarkdownMail;
 use App\Models\Category;
 use App\Models\Post;
 use App\Repository\CategoryRepositoryInterface;
+use App\Repository\PostRepositoryInterface;
 use Database\Factories\CategoryFactory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
@@ -16,10 +17,15 @@ use Illuminate\Support\Facades\Mail;
 class TestController extends Controller
 {
     private $categoryRepository;
+    private $postRepository;
     
-    public function __construct(CategoryRepositoryInterface $categoryRepository)
+    public function __construct(
+        CategoryRepositoryInterface $categoryRepository, 
+        PostRepositoryInterface $postRepository
+    )
     {
         $this->categoryRepository = $categoryRepository;
+        $this->postRepository     = $postRepository;
         // $this->middleware('auth')->except('bar');
     }
 
@@ -61,6 +67,12 @@ class TestController extends Controller
         return view('test.posts', [
             "posts" => Post::paginate(3)
         ]);
+    }
+
+    public function show($id) {
+        dd(
+            $this->postRepository->show($id)
+        );
     }
 
     // public function create() {

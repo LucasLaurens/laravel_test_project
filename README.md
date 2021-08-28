@@ -1,6 +1,6 @@
 # Laravel test project
 
-## features
+## Features
 - Authentication
 - Middleware
 - Gate

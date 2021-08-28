@@ -14,4 +14,12 @@ class Post extends Model
         'title',
         'description',
     ];
+
+    public function postFormat()
+    {
+        return [
+            'post_name'        => $this->title,
+            'post_description' => $this->description
+        ];
+    }
 }

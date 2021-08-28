@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\TestController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -22,6 +23,7 @@ Route::middleware(['auth', 'is.admin'])->group(function() {
     Route::get('/home', '\App\Http\Controllers\TestController@index')->withoutMiddleware(['auth', 'is.admin'])->name('home');
     Route::delete('/home/{id}', '\App\Http\Controllers\TestController@delete')->withoutMiddleware(['auth', 'is.admin'])->name('post.delete');
     Route::get('/posts', '\App\Http\Controllers\TestController@posts')->withoutMiddleware(['auth', 'is.admin'])->name('posts');
+    Route::get('/show/{id}', [TestController::class, 'show'])->withoutMiddleware(['auth', 'is.admin'])->name('post.show');
     // Route::get('/create', '\App\Http\Controllers\TestController@create')->withoutMiddleware(['auth', 'is.admin']);
 });
 
