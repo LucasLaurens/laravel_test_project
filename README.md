@@ -16,3 +16,4 @@
 - Pagination
 - Sass
 - Local Scopes | Global Scopes
+- Notifications -> Mail | Database
