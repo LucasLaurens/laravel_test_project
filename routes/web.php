@@ -1,6 +1,5 @@
 <?php
 
-use App\Http\Controllers\TestController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,18 +15,6 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
-});
-Route::middleware(['auth', 'is.admin'])->group(function() {
-    Route::get('/foo', '\App\Http\Controllers\TestController@foo');
-    Route::get('/bar', '\App\Http\Controllers\TestController@bar');
-    Route::get('/home', '\App\Http\Controllers\TestController@index')->withoutMiddleware(['auth', 'is.admin'])->name('home');
-    Route::delete('/home/{id}', '\App\Http\Controllers\TestController@delete')->withoutMiddleware(['auth', 'is.admin'])->name('post.delete');
-    Route::get('/posts', '\App\Http\Controllers\TestController@posts')->withoutMiddleware(['auth', 'is.admin'])->name('posts');
-    Route::get('/show/{id}', [TestController::class, 'show'])->withoutMiddleware(['auth', 'is.admin'])->name('post.show');
-    Route::get('/is_visible', [TestController::class, 'is_visible'])->withoutMiddleware(['auth', 'is.admin'])->name('post.is_visible');
-    Route::get('/upload',  [TestController::class, 'upload'])->withoutMiddleware(['auth', 'is.admin'])->name('upload');
-    Route::post('/upload-file',  [TestController::class, 'uploadFile'])->withoutMiddleware(['auth', 'is.admin'])->name('upload.file');
-    // Route::get('/create', '\App\Http\Controllers\TestController@create')->withoutMiddleware(['auth', 'is.admin']);
 });
 
 Route::get('/dashboard', function () {
