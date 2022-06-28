@@ -3,12 +3,18 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
-use Illuminate\Http\JsonResponse;
+use Illuminate\View\View;
 use Illuminate\Http\Request;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
 {
+    public function login(): View
+    {
+        return view('auth.login');
+    }
+
     public function authenticate(Request $request): JsonResponse
     {
         $user = User::where('email', $request->email)->first();
@@ -18,12 +24,5 @@ class AuthController extends Controller
                 'token' => $user->createToken(uniqid())->plainTextToken
             ]);
         }
-    }
-
-    public function dashboard(): JsonResponse
-    {
-        return response()->json([
-            'success' => 'Bienvenue!'
-        ]);
     }
 }
