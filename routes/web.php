@@ -25,5 +25,5 @@ use Illuminate\Support\Facades\Route;
 // require __DIR__.'/auth.php';
 
 // layouts.app
-Route::view('/{any}', 'app')
+Route::view('/{any}', 'api.app')
     ->where('any', '.*');
