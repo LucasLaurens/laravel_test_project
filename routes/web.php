@@ -1,6 +1,7 @@
 <?php
 
-use App\Http\Controllers\Auth\AuthController;
+// use App\Http\Controllers\Auth\AuthController;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,16 +15,31 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
+Route::get('/', function () {
+    return view('welcome');
+});
 
-// Route::get('/dashboard', function () {
-//     return view('dashboard');
-// })->middleware(['auth'])->name('dashboard');
+Route::middleware(['auth'])->group(function() {
+    Route::get('/dashboard', function () {
+        return view('dashboard');
+    })->name('dashboard');
 
-// require __DIR__.'/auth.php';
+    Route::get('/checkout', function () {
+        return view('client.checkout');
+    })->name('checkout');
+
+    Route::get('/payment', function (Request $request) {
+        $user = auth()->user();
+        $stripeCharge = $user->charge(
+            100, $request->payment_method
+        );
+
+        dd($stripeCharge);
+    })->name('payment');
+});
+
+require __DIR__.'/auth.php';
 
 // layouts.app
-Route::view('/{any}', 'api.app')
-    ->where('any', '.*');
+// Route::view('/{any}', 'api.app')
+//     ->where('any', '.*');

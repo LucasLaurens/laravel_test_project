@@ -2,20 +2,23 @@
 
 namespace App\Models;
 
-use App\Events\UserCreatingEvent;
-use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Laravel\Cashier\Billable;
+// use App\Events\UserCreatingEvent;
+use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
-use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
 {
-    use HasApiTokens, HasFactory, Notifiable;
+    use HasApiTokens;
+    use HasFactory;
+    use Notifiable;
+    use Billable;
 
-    protected $dispatchesEvents = [
-        'creating' => UserCreatingEvent::class
-    ];
+    // protected $dispatchesEvents = [
+    //     'creating' => UserCreatingEvent::class
+    // ];
 
     /**
      * The attributes that are mass assignable.
