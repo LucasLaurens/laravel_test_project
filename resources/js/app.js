@@ -1,6 +1,6 @@
 require('./bootstrap');
 
-// require('alpinejs');
+require('alpinejs');
 
 import { createApp } from 'vue';
 import router from './router';

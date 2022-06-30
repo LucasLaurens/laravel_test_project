@@ -25,4 +25,15 @@ class AuthController extends Controller
             ]);
         }
     }
+
+    public function getRole(): JsonResponse
+    {
+        return response()->json([
+            'is_admin' => auth()->user()->is_admin
+        ]);
+    }
+
+    public function logout()
+    {
+    }
 }

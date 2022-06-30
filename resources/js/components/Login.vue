@@ -28,7 +28,7 @@ export default {
             })
                 .then(res => {
                     store.state.user.token = res.data.token;
-                    console.log(store.state.user.token);
+                    localStorage.setItem('auth-token', res.data.token);
                 })
                 .catch(err => console.log(err));
         }

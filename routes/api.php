@@ -19,9 +19,13 @@ use Illuminate\Support\Facades\Route;
 //     return $request->user();
 // });
 Route::post('login', [AuthController::class, 'authenticate']);
-Route::post('privateInformations', function() {
-    return response()->json([
-        'information' => 'Hello World!'
-    ]);
-})
-->middleware('auth:sanctum');
+
+Route::middleware(['auth:sanctum'])->group(function() {
+    Route::post('privateInformations', function() {
+        return response()->json([
+            'information' => 'Hello World!'
+        ]);
+    });
+
+    Route::get('getRole', [AuthController::class, 'getRole']);
+});
