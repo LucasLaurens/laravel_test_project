@@ -54,8 +54,8 @@ class RegisteredUserController extends Controller
 
         //* php artisan queue:work
         // SendWelcomeUserMailJob::dispatch($user);
-        
-        $user->notify(new UserRegisteredNotification());
+
+        // $user->notify(new UserRegisteredNotification());
 
         Auth::login($user);
 
