@@ -18,14 +18,14 @@ use Illuminate\Support\Facades\Route;
 // Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 //     return $request->user();
 // });
-Route::post('login', [AuthController::class, 'authenticate']);
+// Route::post('login', [AuthController::class, 'authenticate']);
 
-Route::middleware(['auth:sanctum'])->group(function() {
-    Route::post('privateInformations', function() {
-        return response()->json([
-            'information' => 'Hello World!'
-        ]);
-    });
+// Route::middleware(['auth:sanctum'])->group(function() {
+//     Route::post('privateInformations', function() {
+//         return response()->json([
+//             'information' => 'Hello World!'
+//         ]);
+//     });
 
-    Route::get('getRole', [AuthController::class, 'getRole']);
-});
+//     Route::get('getRole', [AuthController::class, 'getRole']);
+// });
