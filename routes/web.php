@@ -20,44 +20,50 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/payment-paypal', function () {
+    return view('client.checkout.payment.paypal', [
+        'clientId' => env('PAYPAL_CLIENT_ID')
+    ]);
+})->name('paypal');
+
 Route::middleware(['auth'])->group(function() {
     Route::get('/dashboard', function () {
         return view('dashboard');
     })->name('dashboard');
 
-    Route::get('/checkout', function () {
-        return view('client.checkout');
-    })->name('checkout');
+    // Route::get('/checkout', function () {
+    //     return view('client.checkout');
+    // })->name('checkout');
 
-    Route::post('/payment', function (Request $request) {
-        $user = auth()->user();
-        $user->createOrGetStripeCustomer();
+    // Route::post('/payment', function (Request $request) {
+    //     $user = auth()->user();
+    //     $user->createOrGetStripeCustomer();
 
-        $paymentMethod = $request->payment_method;
-        $user->updateDefaultPaymentMethod($request->payment_method);
-        $amount = 2000;
-        $productName = "test";
+    //     $paymentMethod = $request->payment_method;
+    //     $user->updateDefaultPaymentMethod($request->payment_method);
+    //     $amount = 2000;
+    //     $productName = "test";
 
-        $user->charge(
-            $amount, $paymentMethod
-        );
+    //     $user->charge(
+    //         $amount, $paymentMethod
+    //     );
 
-        $user->invoiceFor(
-            $productName, $amount
-        );
+    //     $user->invoiceFor(
+    //         $productName, $amount
+    //     );
 
-        return redirect()->route('checkout');
-    })->name('payment');
+    //     return redirect()->route('checkout');
+    // })->name('payment');
 
-    Route::get('/last/invoice', function () {
-        $user = auth()->user();
-        $user->createOrGetStripeCustomer();
+    // Route::get('/last/invoice', function () {
+    //     $user = auth()->user();
+    //     $user->createOrGetStripeCustomer();
 
-        return $user->downloadInvoice($user->invoices()->last()->id, [
-            'vendor' => 'Your Company',
-            'product' => 'Your Product',
-        ]);
-    })->name('last.invoice');
+    //     return $user->downloadInvoice($user->invoices()->last()->id, [
+    //         'vendor' => 'Your Company',
+    //         'product' => 'Your Product',
+    //     ]);
+    // })->name('last.invoice');
 });
 
 require __DIR__.'/auth.php';
